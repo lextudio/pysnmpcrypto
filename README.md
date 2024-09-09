@@ -1,7 +1,7 @@
 
 Strong crypto support for PySNMP
 --------------------------------
-[![PyPI](https://img.shields.io/pypi/v/pysnmpcrypto.svg?maxAge=2592000)](https://pypi.org/project/pysnmpcrypto)
+[![PyPI](https://img.shields.io/pypi/v/pysnmpcrypto.svg)](https://pypi.org/project/pysnmpcrypto)
 [![Python Versions](https://img.shields.io/pypi/pyversions/pysnmpcrypto.svg)](https://pypi.org/project/pysnmpcrypto/)
 [![GitHub license](https://img.shields.io/badge/license-BSD-blue.svg)](https://raw.githubusercontent.com/lextudio/pysnmpcrypto/master/LICENSE.rst)
 
