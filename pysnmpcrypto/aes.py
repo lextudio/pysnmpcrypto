@@ -4,24 +4,10 @@ Crypto logic for RFC3826.
 https://tools.ietf.org/html/rfc3826
 """
 from pysnmpcrypto import (
-    backend, CRYPTODOME, CRYPTOGRAPHY, generic_decrypt, generic_encrypt)
+    backend, CRYPTOGRAPHY, generic_decrypt, generic_encrypt)
 
-if backend == CRYPTOGRAPHY:
-    from cryptography.hazmat.backends import default_backend
-    from cryptography.hazmat.primitives.ciphers import algorithms, Cipher, modes
-
-elif backend == CRYPTODOME:
-    from Cryptodome.Cipher import AES
-
-
-def _cryptodome_cipher(key, iv):
-    """Build a Pycryptodome AES Cipher object.
-
-    :param bytes key: Encryption key
-    :param bytes iv: Initialization vector
-    :returns: AES Cipher instance
-    """
-    return AES.new(key, AES.MODE_CFB, iv, segment_size=128)
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives.ciphers import algorithms, Cipher, modes
 
 
 def _cryptography_cipher(key, iv):
@@ -41,7 +27,6 @@ def _cryptography_cipher(key, iv):
 
 _CIPHER_FACTORY_MAP = {
     CRYPTOGRAPHY: _cryptography_cipher,
-    CRYPTODOME: _cryptodome_cipher
 }
 
 

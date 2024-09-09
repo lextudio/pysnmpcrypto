@@ -1,5 +1,5 @@
 # http://www.python.org/dev/peps/pep-0396/
-__version__ = '0.0.4'
+__version__ = '0.1.0'
 
 # Backend-selecting cryptographic logic to allow migration to
 # pyca/cryptography without immediately dropping support for legacy
@@ -10,23 +10,12 @@ __version__ = '0.0.4'
 # (currently  2.6, 3.2, and 3.3) fall back to Pycryptodome.
 
 CRYPTOGRAPHY = 'cryptography'
-CRYPTODOME = 'Cryptodome'
 
 # Determine the available backend. Always prefer cryptography if
 # it is available.
-try:
-    import cryptography
+import cryptography
 
-    backend = CRYPTOGRAPHY
-
-except ImportError:
-    try:
-        import Cryptodome
-
-        backend = CRYPTODOME
-
-    except ImportError:
-        backend = None
+backend = CRYPTOGRAPHY
 
 
 class PysnmpCryptoError(Exception):
@@ -99,11 +88,9 @@ def _cryptography_decrypt(cipher_factory, ciphertext, key, iv):
 
 _DECRYPT_MAP = {
     CRYPTOGRAPHY: _cryptography_decrypt,
-    CRYPTODOME: _cryptodome_decrypt
 }
 _ENCRYPT_MAP = {
     CRYPTOGRAPHY: _cryptography_encrypt,
-    CRYPTODOME: _cryptodome_encrypt
 }
 
 

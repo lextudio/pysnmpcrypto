@@ -5,30 +5,17 @@ https://tools.ietf.org/html/draft-reeder-snmpv3-usm-3desede-00
 """
 
 from pysnmpcrypto import (
-    CRYPTODOME,
     CRYPTOGRAPHY,
     backend,
     generic_decrypt,
     generic_encrypt,
 )
 
-if backend == CRYPTOGRAPHY:
-    from cryptography.hazmat.backends import default_backend
-    from cryptography.hazmat.decrepit.ciphers import algorithms
-    from cryptography.hazmat.primitives.ciphers import Cipher, modes
 
-elif backend == CRYPTODOME:
-    from Cryptodome.Cipher import DES3
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.decrepit.ciphers import algorithms
+from cryptography.hazmat.primitives.ciphers import Cipher, modes
 
-
-def _cryptodome_cipher(key, iv):
-    """Build a Pycryptodome DES3 Cipher object.
-
-    :param bytes key: Encryption key
-    :param bytes iv: Initialization vector
-    :returns: DES3 Cipher instance
-    """
-    return DES3.new(key, DES3.MODE_CBC, iv)
 
 
 def _cryptography_cipher(key, iv):
@@ -48,7 +35,6 @@ def _cryptography_cipher(key, iv):
 
 _CIPHER_FACTORY_MAP = {
     CRYPTOGRAPHY: _cryptography_cipher,
-    CRYPTODOME: _cryptodome_cipher,
 }
 
 

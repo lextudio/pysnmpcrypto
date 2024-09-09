@@ -5,30 +5,15 @@ https://tools.ietf.org/html/rfc3414
 """
 
 from pysnmpcrypto import (
-    CRYPTODOME,
     CRYPTOGRAPHY,
     backend,
     generic_decrypt,
     generic_encrypt,
 )
 
-if backend == CRYPTOGRAPHY:
-    from cryptography.hazmat.backends import default_backend
-    from cryptography.hazmat.decrepit.ciphers import algorithms
-    from cryptography.hazmat.primitives.ciphers import Cipher, modes
-
-elif backend == CRYPTODOME:
-    from Cryptodome.Cipher import DES
-
-
-def _cryptodome_cipher(key, iv):
-    """Build a Pycryptodome DES Cipher object.
-
-    :param bytes key: Encryption key
-    :param bytes iv: Initialization vector
-    :returns: DES Cipher instance
-    """
-    return DES.new(key, DES.MODE_CBC, iv)
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.decrepit.ciphers import algorithms
+from cryptography.hazmat.primitives.ciphers import Cipher, modes
 
 
 def _cryptography_cipher(key, iv):
@@ -58,7 +43,6 @@ def _cryptography_cipher(key, iv):
 
 _CIPHER_FACTORY_MAP = {
     CRYPTOGRAPHY: _cryptography_cipher,
-    CRYPTODOME: _cryptodome_cipher,
 }
 
 

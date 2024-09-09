@@ -1,17 +1,33 @@
 [tool.poetry]
 name = "pysnmpcrypto"
 version = "0.1.0"
-description = ""
-authors = ["Riccardo Pittau <elfosardo@gmail.com>"]
+description = "Strong cryptography support for PySNMP (SNMP library for Python)"
+authors = ["Ilya Etingof <etingof@gmail.com>", "LeXtudio Inc. <support@lextudio.com>"]
 license = "BSD-2-Clause"
+repository = "https://github.com/lextudio/pysnmpcrypto"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: System Administrators",
+    "Intended Audience :: Telecommunications Industry",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Topic :: Communications",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.7"
-pycryptodomex = "^3.17"
-cryptography = "^40.0.2"
+python = "^3.8"
+cryptography = ">=43.0.1"
 
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.0"
+
+[tool.poetry_bumpversion.file."pysnmpcrypto/__init__.py"]
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
